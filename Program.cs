@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime;
 using CodingCampusCSharpHomework;
 
 namespace HomeworkTemplate
@@ -12,11 +13,10 @@ namespace HomeworkTemplate
                 // Your solution goes here
                 // You can get all needed inputs from task.[Property]
                 // Good luck!
+                float sickPeople = float.Parse(task.City.Population) * float.Parse(task.City.SickPercentage);
+                float deadPeople = sickPeople * float.Parse(task.Virus.KillProbability);
 
-                float sickPeople = task.City.Population * (task.City.SickPercentage * 100.f);
-                float deadPeople = sickPeople * (task.City.KillProbability * 100.f);
-
-                return ($"There are {sickPeople} people sick with {task.Virus.Name} in the city of {task.City.Name}, {deadPeople} of which died");
+                return ($"There are {Math.Truncate(sickPeople)} people sick with {task.Virus.Name} in the city of {task.City.Name}, {Math.Truncate(deadPeople)} of which died");
             };
 
             Task1.CheckSolver(TaskSolver);
